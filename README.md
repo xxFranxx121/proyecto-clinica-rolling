@@ -57,7 +57,7 @@ Dentro de esta carpeta se encuentra la subcarpeta admin, que agrupa componentes 
 -	Componentes reutilizables y modulares.
 -	Diseño responsive adaptable a distintos dispositivos.
 -	Interfaz clara y orientada a la experiencia del usuario.
--	
+  
 # Ejecucion del proyecto: 
 1. Clonar el repositorio:
 -	`bash: git clone https://github.com/usuario/nombre-repositorio.git
