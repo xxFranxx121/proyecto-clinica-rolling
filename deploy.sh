@@ -19,7 +19,8 @@ git commit -m 'deploy'
 
 # 4. Push a gh-pages
 echo "📤 Subiendo a branch gh-pages..."
-git push -f git@github.com:xxFranxx121/proyecto-clinica-rolling.git main:gh-pages
+git branch -m main
+git push -f https://github.com/xxFranxx121/proyecto-clinica-rolling.git main:gh-pages
 
 cd -
 
