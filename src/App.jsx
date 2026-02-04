@@ -29,7 +29,7 @@ function App() {
       <GlobalStyles />
       <AuthProvider>
         <DataProvider>
-          <BrowserRouter>
+          <BrowserRouter basename="/proyecto-clinica-rolling">
             <Layout>
               <Routes>
                 <Route path="/" element={<Home />} />

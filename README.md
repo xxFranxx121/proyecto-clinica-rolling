@@ -92,7 +92,7 @@ npm test
 - **Password:** `admin123`
 
 ### Médico (aprobado)
-- **Email:** `dr.house@gmail.com`
+- **Email:** `dr.house@clinica.com`
 - **Password:** `password`
 
 ### Paciente
