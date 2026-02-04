@@ -116,6 +116,7 @@ const AdminDoctors = () => {
                     <tr>
                         <Th>Nombre</Th>
                         <Th>Especialidad</Th>
+                        <Th>Estado</Th>
                         <Th>Acciones</Th>
                     </tr>
                 </thead>
@@ -125,7 +126,35 @@ const AdminDoctors = () => {
                             <Td>{doc.name}</Td>
                             <Td>{doc.specialty}</Td>
                             <Td>
+                                <span style={{
+                                    padding: '4px 12px',
+                                    borderRadius: '12px',
+                                    fontSize: '0.85rem',
+                                    fontWeight: '600',
+                                    background: doc.approved ? '#e8f5e9' : '#fff3e0',
+                                    color: doc.approved ? '#2e7d32' : '#ef6c00'
+                                }}>
+                                    {doc.approved ? 'Aprobado' : 'Pendiente'}
+                                </span>
+                            </Td>
+                            <Td>
                                 <div style={{ display: 'flex', gap: '10px' }}>
+                                    {!doc.approved && (
+                                        <button
+                                            style={{
+                                                padding: '4px 10px',
+                                                background: '#4caf50',
+                                                color: 'white',
+                                                border: 'none',
+                                                borderRadius: '4px',
+                                                cursor: 'pointer',
+                                                fontSize: '0.85rem'
+                                            }}
+                                            onClick={() => updateDoctor({ ...doc, approved: true })}
+                                        >
+                                            Aprobar
+                                        </button>
+                                    )}
                                     <FaEdit style={{ cursor: 'pointer', color: '#f39c12' }} onClick={() => handleOpen(doc)} />
                                     <FaTrash style={{ cursor: 'pointer', color: '#e74c3c' }} onClick={() => { if (window.confirm('Eliminar?')) deleteDoctor(doc.id) }} />
                                 </div>

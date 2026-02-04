@@ -8,6 +8,8 @@ import Layout from './components/Layout';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import RegisterPatient from './pages/RegisterPatient';
+import RegisterDoctor from './pages/RegisterDoctor';
 
 import ProtectedRoute from './components/ProtectedRoute';
 import AdminPanel from './pages/AdminPanel';
@@ -16,6 +18,8 @@ import MenuPaciente from './pages/MenuPaciente';
 import Profesionales from './pages/Profesionales';
 import DetalleMedico from './pages/DetalleMedico';
 import DetalleTurno from './pages/DetalleTurno';
+import AboutUs from './pages/AboutUs';
+import NotFound from './pages/NotFound';
 import MisTurnos from './pages/MisTurnos';
 import Especialidades from './pages/Especialidades';
 
@@ -30,6 +34,8 @@ function App() {
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/register" element={<Register />} />
+                <Route path="/register/paciente" element={<RegisterPatient />} />
+                <Route path="/register/medico" element={<RegisterDoctor />} />
                 <Route path="/login" element={<Login />} />
                 <Route
                   path="/admin"
@@ -88,7 +94,8 @@ function App() {
                   }
                 />
                 <Route path="/turno" element={<DetalleTurno />} />
-                <Route path="*" element={<Navigate to="/" replace />} />
+                <Route path="/nosotros" element={<AboutUs />} />
+                <Route path="*" element={<NotFound />} />
               </Routes>
             </Layout>
           </BrowserRouter>

@@ -123,8 +123,8 @@ const Profesionales = () => {
   const specialtyFilter = searchParams.get('specialty');
 
   const filteredDoctors = specialtyFilter
-    ? doctors.filter(doc => doc.specialty === specialtyFilter)
-    : doctors;
+    ? doctors.filter(doc => doc.specialty === specialtyFilter && doc.approved !== false)
+    : doctors.filter(doc => doc.approved !== false);
 
   return (
     <Container>
