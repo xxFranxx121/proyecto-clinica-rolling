@@ -1,5 +1,5 @@
 export const mockDoctors = [
-    { id: 1, name: 'Dr. Gregory House', specialty: 'Clínica Medica', email: 'house@clinica.com', image: 'https://i.pravatar.cc/150?u=house' },
+    { id: 1, name: 'Dr. Gregory House', specialty: 'Clínica Medica', email: 'dr.house@gmail.com', image: 'https://i.pravatar.cc/150?u=house' },
     { id: 2, name: 'Dra. Meredith Grey', specialty: 'Cirugía General', email: 'grey@clinica.com', image: 'https://i.pravatar.cc/150?u=grey' },
     { id: 3, name: 'Dr. Shaun Murphy', specialty: 'Pediatría / Neonatología', email: 'murphy@clinica.com', image: 'https://i.pravatar.cc/150?u=shaun' },
     { id: 4, name: 'Dra. Lisa Cuddy', specialty: 'Endocrinología', email: 'cuddy@clinica.com', image: 'https://i.pravatar.cc/150?u=cuddy' },

@@ -131,10 +131,10 @@ const Login = () => {
 
     const result = login(email, password);
     if (result.success) {
-      // Check role from the login result if possible, or use the role we know implies 'paciente' based on mock logic
-      if (email.includes('admin')) {
+      // Redirección basada en el ROL real del usuario
+      if (result.role === 'admin') {
         navigate('/admin');
-      } else if (email.includes('medico') || email.includes('doctor')) {
+      } else if (result.role === 'medico') {
         navigate('/turnos-medico');
       } else {
         navigate('/menu-paciente');

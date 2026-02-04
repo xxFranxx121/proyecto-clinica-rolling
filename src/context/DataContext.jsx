@@ -1,50 +1,44 @@
-import { createContext, useState, useContext, useEffect } from 'react';
+import { createContext, useState, useContext } from 'react';
 import { mockDoctors, mockAppointments } from '../services/mockData';
 
 const DataContext = createContext();
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useData = () => {
     return useContext(DataContext);
 };
 
 export const DataProvider = ({ children }) => {
-    const [doctors, setDoctors] = useState([]);
-    const [appointments, setAppointments] = useState([]);
-    const [patients, setPatients] = useState([]);
+    const [doctors, setDoctors] = useState(mockDoctors);
 
-    useEffect(() => {
-        // Load doctors
-        setDoctors(mockDoctors);
-
-        // Load patients (mock)
+    const [patients, setPatients] = useState(() => {
         const storedPatients = localStorage.getItem('patients');
         if (storedPatients) {
-            setPatients(JSON.parse(storedPatients));
-        } else {
-            // Seed some mock patients
-            const initialPatients = [
-                { id: 1, name: 'Juan Pérez', email: 'juan@example.com', insurance: 'OSDE 210', history: 'Hipertensión' },
-                { id: 2, name: 'Maria Gómez', email: 'maria@example.com', insurance: 'Swiss Medical', history: 'Sin antecedentes' }
-            ];
-            setPatients(initialPatients);
-            localStorage.setItem('patients', JSON.stringify(initialPatients));
+            return JSON.parse(storedPatients);
         }
+        // Seed some mock patients
+        const initialPatients = [
+            { id: 1, name: 'Juan Pérez', email: 'juan@example.com', insurance: 'OSDE 210', history: 'Hipertensión' },
+            { id: 2, name: 'Maria Gómez', email: 'maria@example.com', insurance: 'Swiss Medical', history: 'Sin antecedentes' }
+        ];
+        localStorage.setItem('patients', JSON.stringify(initialPatients));
+        return initialPatients;
+    });
 
-        // Load appointments from local storage or mock
+    const [appointments, setAppointments] = useState(() => {
         const storedAppointments = localStorage.getItem('appointments');
         if (storedAppointments) {
             try {
-                setAppointments(JSON.parse(storedAppointments));
+                return JSON.parse(storedAppointments);
             } catch (error) {
                 console.error("Error parsing appointments:", error);
-                setAppointments(mockAppointments);
                 localStorage.setItem('appointments', JSON.stringify(mockAppointments));
+                return mockAppointments;
             }
-        } else {
-            setAppointments(mockAppointments);
-            localStorage.setItem('appointments', JSON.stringify(mockAppointments));
         }
-    }, []);
+        localStorage.setItem('appointments', JSON.stringify(mockAppointments));
+        return mockAppointments;
+    });
 
     // --- DOCTORS CRUD ---
     const addDoctor = (doctor) => {

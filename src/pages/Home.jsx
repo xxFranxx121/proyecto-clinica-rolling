@@ -3,6 +3,34 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import AvisoHorario from '../components/AvisoHorario';
 import { FaStethoscope, FaCalendarCheck, FaNotesMedical } from 'react-icons/fa';
+import heroImg from '../assets/c1.jpg';
+
+const HeroWrapper = styled.section`
+  height: 60vh;
+  background: linear-gradient(
+      rgba(0, 0, 0, 0.45),
+      rgba(0, 0, 0, 0.45)
+    ),
+    url(${heroImg});
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: ${({ theme }) => theme.spacing.xlarge};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    height: 45vh;
+  }
+`;
+
+const AvisoWrapper = styled.div`
+  width: 100%;
+  max-width: 100%;
+  margin: ${({ theme }) => theme.spacing.large} 0;
+  padding: 0 ${({ theme }) => theme.spacing.xlarge};
+`;
 
 const HeroSection = styled.section`
   margin-top: ${({ theme }) => theme.spacing.xlarge};
@@ -13,7 +41,7 @@ const HeroSection = styled.section`
 
 const HeroTitle = styled.h2`
   font-size: 3rem;
-  color: ${({ theme }) => theme.colors.secondary};
+  color: #fff;
   margin-bottom: ${({ theme }) => theme.spacing.medium};
   line-height: 1.2;
 
@@ -24,7 +52,7 @@ const HeroTitle = styled.h2`
 
 const HeroText = styled.p`
   font-size: 1.1rem;
-  color: #666;
+  color: #f1f1f1;
   max-width: 700px;
   margin: 0 auto;
 `;
@@ -155,15 +183,21 @@ const Home = () => {
 
   return (
     <>
-      <HeroSection>
-        <HeroTitle>Cuidamos tu salud, cerca de vos</HeroTitle>
-        <HeroText>
-          En Azahares brindamos atención médica integral con los mejores profesionales
-          y tecnología de última generación.
-        </HeroText>
-      </HeroSection>
+      <HeroWrapper>
+        <HeroSection>
+          <HeroTitle>Cuidamos tu salud, cerca de vos</HeroTitle>
+          <HeroText>
+            En Azahares brindamos atención médica integral con los mejores profesionales
+            y tecnología de última generación.
+          </HeroText>
+        </HeroSection>
+      </HeroWrapper>
 
-      <AvisoHorario />
+
+      <AvisoWrapper>
+        <AvisoHorario />
+      </AvisoWrapper>
+
 
       <CardsGrid>
         <Card>

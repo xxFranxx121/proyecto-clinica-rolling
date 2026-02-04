@@ -52,8 +52,12 @@ export const AuthProvider = ({ children }) => {
     }, []);
 
     const login = (email, password) => {
-        // 2. Lógica de Login Estricta
-        const foundUser = allUsers.find(u => u.email === email && u.password === password);
+        // 2. Lógica de Login Estricta (pero flexible en formato)
+        const cleanEmail = email.trim().toLowerCase();
+
+        const foundUser = allUsers.find(u =>
+            u.email.toLowerCase() === cleanEmail && u.password === password
+        );
 
         if (foundUser) {
             // 3. Login Exitoso: Guardar usuario (sin password)
@@ -62,7 +66,7 @@ export const AuthProvider = ({ children }) => {
 
             setUser(userWithoutPass);
             localStorage.setItem('user', JSON.stringify(userWithoutPass));
-            return { success: true };
+            return { success: true, role: foundUser.role };
         } else {
             // 4. Login Fallido
             return { success: false, message: 'Credenciales inválidas. Verifique email y contraseña.' };

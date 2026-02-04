@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { useData } from '../context/DataContext';
 import { useAuth } from '../context/AuthContext';
@@ -185,7 +185,6 @@ const DetalleMedico = () => {
   const { doctors, checkAvailability, addAppointment } = useData();
   const { user } = useAuth();
 
-  const [doctor, setDoctor] = useState(null);
   const [formData, setFormData] = useState({
     date: '',
     time: '',
@@ -193,12 +192,9 @@ const DetalleMedico = () => {
   });
   const [error, setError] = useState('');
 
-  useEffect(() => {
-    if (doctorId && doctors.length > 0) {
-      const doc = doctors.find(d => d.id === Number(doctorId));
-      setDoctor(doc);
-    }
-  }, [doctorId, doctors]);
+  const doctor = doctorId && doctors.length > 0
+    ? doctors.find(d => d.id === Number(doctorId))
+    : null;
 
   const handleSubmit = (e) => {
     e.preventDefault();
