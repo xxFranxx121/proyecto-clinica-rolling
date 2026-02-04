@@ -25,6 +25,11 @@ const TabsContainer = styled.div`
     margin-bottom: 30px;
     border-bottom: 2px solid #eee;
     padding-bottom: 15px;
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
 `;
 
 const Tab = styled.button`

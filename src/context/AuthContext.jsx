@@ -60,6 +60,11 @@ export const AuthProvider = ({ children }) => {
         );
 
         if (foundUser) {
+            // Check for Doctor Approval
+            if (foundUser.role === 'medico' && foundUser.approved === false) {
+                return { success: false, message: 'Su cuenta está pendiente de aprobación por un administrador.' };
+            }
+
             // 3. Login Exitoso: Guardar usuario (sin password)
             // eslint-disable-next-line no-unused-vars
             const { password, ...userWithoutPass } = foundUser;

@@ -25,6 +25,13 @@ const AppointmentCard = styled.div`
   justify-content: space-between;
   align-items: center;
   border-left: 5px solid ${({ theme }) => theme.colors.primary};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 30px;
+  }
 `;
 
 const Info = styled.div`
@@ -37,6 +44,10 @@ const DoctorName = styled.h3`
     margin: 0;
     color: #333;
     font-size: 1.1rem;
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+        font-size: 1.3rem;
+    }
 `;
 
 const DateInfo = styled.div`
@@ -44,12 +55,20 @@ const DateInfo = styled.div`
     display: flex;
     align-items: center;
     gap: 8px;
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+        font-size: 1.1rem;
+    }
 `;
 const Reason = styled.p`
     color: #888;
     font-size: 0.9rem;
     margin: 5px 0 0 0;
     font-style: italic;
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+        font-size: 1.05rem;
+    }
 `;
 
 const Status = styled.span`
@@ -59,6 +78,11 @@ const Status = styled.span`
     border-radius: 20px;
     font-weight: 600;
     font-size: 0.9rem;
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+        font-size: 1.1rem;
+        padding: 10px 18px;
+    }
 `;
 
 const EmptyState = styled.div`

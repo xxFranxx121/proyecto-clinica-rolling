@@ -13,6 +13,12 @@ const ProtectedRoute = ({ children, requiredRole }) => {
         return children;
     }
 
+    // Security Check: Force logout/redirect if user is a doctor and not approved
+    // (This handles cases where access might be attempted via direct URL manipulation or stale session)
+    if (user.role === 'medico' && user.approved === false) {
+        return <Navigate to="/login" replace />;
+    }
+
     if (requiredRole && user.role !== requiredRole) {
         return <Navigate to="/" replace />;
     }

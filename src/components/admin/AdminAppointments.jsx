@@ -9,6 +9,10 @@ const Toolbar = styled.div`
     display: flex;
     justify-content: flex-end;
     margin-bottom: 20px;
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+        justify-content: center;
+    }
 `;
 
 const Button = styled.button`
@@ -26,6 +30,11 @@ const Button = styled.button`
     &:hover {
         background-color: ${({ theme }) => theme.colors.secondary};
     }
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+        width: 100%;
+        justify-content: center;
+    }
 `;
 
 const Table = styled.table`
@@ -35,6 +44,29 @@ const Table = styled.table`
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+        display: block;
+        box-shadow: none;
+        background: transparent;
+    }
+`;
+
+const Thead = styled.thead`
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+        display: none;
+    }
+`;
+
+const Tr = styled.tr`
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+        display: block;
+        background: white;
+        margin-bottom: 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        border: 1px solid #eee;
+    }
 `;
 
 const Th = styled.th`
@@ -47,6 +79,34 @@ const Th = styled.th`
 const Td = styled.td`
     padding: 12px;
     border-bottom: 1px solid #eee;
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-align: right;
+        padding: 10px 50px;
+        border-bottom: 1px solid #f0f0f0;
+        font-size: 1.2rem;
+
+        &::before {
+            content: attr(data-label);
+            font-weight: 700;
+            color: ${({ theme }) => theme.colors.primary};
+            font-size: 1rem;
+            text-transform: uppercase;
+            text-align: left;
+            margin-right: 10px;
+        }
+
+        &:last-child {
+            border-bottom: none;
+            justify-content: flex-end;
+            margin-top: 0;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+    }
 `;
 
 const Select = styled.select`
@@ -76,6 +136,12 @@ const Modal = styled.div`
     box-shadow: 0 5px 20px rgba(0,0,0,0.2);
     z-index: 100;
     width: 400px;
+    max-width: 90%;
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+        width: 90%;
+        padding: 20px;
+    }
 `;
 
 const Overlay = styled.div`
@@ -136,7 +202,7 @@ const AdminAppointments = () => {
             </Toolbar>
 
             <Table>
-                <thead>
+                <Thead>
                     <tr>
                         <Th>Paciente</Th>
                         <Th>Médico</Th>
@@ -144,18 +210,20 @@ const AdminAppointments = () => {
                         <Th>Estado</Th>
                         <Th>Acciones</Th>
                     </tr>
-                </thead>
+                </Thead>
                 <tbody>
                     {appointments.map(apt => (
-                        <tr key={apt.id}>
-                            <Td>{apt.patientName}</Td>
-                            <Td>{apt.doctorName}</Td>
-                            <Td>{apt.date} {apt.time}</Td>
-                            <Td>{apt.status}</Td>
-                            <Td>
-                                <FaTrash style={{ cursor: 'pointer', color: '#e74c3c' }} onClick={() => { if (window.confirm('Cancelar turno?')) deleteAppointment(apt.id) }} />
+                        <Tr key={apt.id}>
+                            <Td data-label="Paciente">{apt.patientName}</Td>
+                            <Td data-label="Médico">{apt.doctorName}</Td>
+                            <Td data-label="Fecha/Hora">{apt.date} {apt.time}</Td>
+                            <Td data-label="Estado">{apt.status}</Td>
+                            <Td data-label="Acciones">
+                                <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                                    <FaTrash style={{ cursor: 'pointer', color: '#e74c3c', fontSize: '1.2rem' }} onClick={() => { if (window.confirm('Cancelar turno?')) deleteAppointment(apt.id) }} />
+                                </span>
                             </Td>
-                        </tr>
+                        </Tr>
                     ))}
                 </tbody>
             </Table>

@@ -9,6 +9,10 @@ const Toolbar = styled.div`
     display: flex;
     justify-content: flex-end;
     margin-bottom: 20px;
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+        justify-content: center;
+    }
 `;
 
 const Button = styled.button`
@@ -22,9 +26,14 @@ const Button = styled.button`
     align-items: center;
     gap: 8px;
     font-weight: 600;
-
+    
     &:hover {
         background-color: ${({ theme }) => theme.colors.secondary};
+    }
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+        width: 100%;
+        justify-content: center;
     }
 `;
 
@@ -35,6 +44,29 @@ const Table = styled.table`
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+        display: block;
+        box-shadow: none;
+        background: transparent;
+    }
+`;
+
+const Thead = styled.thead`
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+        display: none;
+    }
+`;
+
+const Tr = styled.tr`
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+        display: block;
+        background: white;
+        margin-bottom: 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        border: 1px solid #eee;
+    }
 `;
 
 const Th = styled.th`
@@ -47,6 +79,34 @@ const Th = styled.th`
 const Td = styled.td`
     padding: 12px;
     border-bottom: 1px solid #eee;
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-align: right;
+        padding: 10px 50px;
+        border-bottom: 1px solid #f0f0f0;
+        font-size: 1.2rem;
+
+        &::before {
+            content: attr(data-label);
+            font-weight: 700;
+            color: ${({ theme }) => theme.colors.primary};
+            font-size: 1rem;
+            text-transform: uppercase;
+            text-align: left;
+            margin-right: 15px;
+        }
+
+        &:last-child {
+            border-bottom: none;
+            justify-content: flex-end;
+            margin-top: 0;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+    }
 `;
 
 const Input = styled.input`
@@ -68,6 +128,12 @@ const Modal = styled.div`
     box-shadow: 0 5px 20px rgba(0,0,0,0.2);
     z-index: 100;
     width: 400px;
+    max-width: 90%; 
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+        width: 90%;
+        padding: 20px;
+    }
 `;
 
 const Overlay = styled.div`
@@ -112,20 +178,20 @@ const AdminDoctors = () => {
             </Toolbar>
 
             <Table>
-                <thead>
+                <Thead>
                     <tr>
                         <Th>Nombre</Th>
                         <Th>Especialidad</Th>
                         <Th>Estado</Th>
                         <Th>Acciones</Th>
                     </tr>
-                </thead>
+                </Thead>
                 <tbody>
                     {doctors.map(doc => (
-                        <tr key={doc.id}>
-                            <Td>{doc.name}</Td>
-                            <Td>{doc.specialty}</Td>
-                            <Td>
+                        <Tr key={doc.id}>
+                            <Td data-label="Nombre">{doc.name}</Td>
+                            <Td data-label="Especialidad">{doc.specialty}</Td>
+                            <Td data-label="Estado">
                                 <span style={{
                                     padding: '4px 12px',
                                     borderRadius: '12px',
@@ -137,8 +203,8 @@ const AdminDoctors = () => {
                                     {doc.approved ? 'Aprobado' : 'Pendiente'}
                                 </span>
                             </Td>
-                            <Td>
-                                <div style={{ display: 'flex', gap: '10px' }}>
+                            <Td data-label="Acciones">
+                                <div style={{ display: 'flex', gap: '10px', justifyContent: 'flex-end' }}>
                                     {!doc.approved && (
                                         <button
                                             style={{
@@ -155,11 +221,11 @@ const AdminDoctors = () => {
                                             Aprobar
                                         </button>
                                     )}
-                                    <FaEdit style={{ cursor: 'pointer', color: '#f39c12' }} onClick={() => handleOpen(doc)} />
-                                    <FaTrash style={{ cursor: 'pointer', color: '#e74c3c' }} onClick={() => { if (window.confirm('Eliminar?')) deleteDoctor(doc.id) }} />
+                                    <FaEdit style={{ cursor: 'pointer', color: '#f39c12', fontSize: '1.1rem' }} onClick={() => handleOpen(doc)} />
+                                    <FaTrash style={{ cursor: 'pointer', color: '#e74c3c', fontSize: '1.1rem' }} onClick={() => { if (window.confirm('Eliminar?')) deleteDoctor(doc.id) }} />
                                 </div>
                             </Td>
-                        </tr>
+                        </Tr>
                     ))}
                 </tbody>
             </Table>
