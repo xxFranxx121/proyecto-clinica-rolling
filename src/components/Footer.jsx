@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { FaPhone, FaMapMarkerAlt, FaWhatsapp, FaFacebook, FaInstagram } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const FooterContainer = styled.footer`
   background-color: ${({ theme }) => theme.colors.secondary};
@@ -127,8 +128,8 @@ const Footer = () => {
           <SectionTitle>Redes Sociales</SectionTitle>
           <p>Seguinos para novedades y consejos.</p>
           <SocialLinks>
-            <a href="#" title="Facebook"><FaFacebook /></a>
-            <a href="#" title="Instagram"><FaInstagram /></a>
+            <Link to="/404" title="Facebook"><FaFacebook /></Link>
+            <Link to="/404" title="Instagram"><FaInstagram /></Link>
           </SocialLinks>
         </FooterSection>
       </FooterContent>

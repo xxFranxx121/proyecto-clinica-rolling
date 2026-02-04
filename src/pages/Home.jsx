@@ -215,7 +215,7 @@ const Home = () => {
           </CardDescription>
         </Card>
 
-        <Card>
+        <Card onClick={() => navigate('/404')}>
           <CardIcon>
             <FaNotesMedical />
           </CardIcon>
