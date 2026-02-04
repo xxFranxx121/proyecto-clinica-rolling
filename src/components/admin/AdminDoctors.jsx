@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { useState } from 'react';
 import { useData } from '../../context/DataContext';
+import { useAuth } from '../../context/AuthContext';
 import { FaPlus, FaEdit, FaTrash, FaUserMd } from 'react-icons/fa';
 
 const Container = styled.div``;
@@ -145,6 +146,7 @@ const Overlay = styled.div`
 
 const AdminDoctors = () => {
     const { doctors, addDoctor, updateDoctor, deleteDoctor } = useData();
+    const { updateUser } = useAuth();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [editingDoc, setEditingDoc] = useState(null);
     const [formData, setFormData] = useState({ name: '', specialty: '', image: 'https://i.pravatar.cc/150' });
@@ -216,7 +218,11 @@ const AdminDoctors = () => {
                                                 cursor: 'pointer',
                                                 fontSize: '0.85rem'
                                             }}
-                                            onClick={() => updateDoctor({ ...doc, approved: true })}
+                                            onClick={() => {
+                                                const updatedDoc = { ...doc, approved: true };
+                                                updateDoctor(updatedDoc);
+                                                updateUser(updatedDoc);
+                                            }}
                                         >
                                             Aprobar
                                         </button>

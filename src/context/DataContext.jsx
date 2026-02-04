@@ -9,7 +9,11 @@ export const useData = () => {
 };
 
 export const DataProvider = ({ children }) => {
-    const [doctors, setDoctors] = useState(mockDoctors);
+    const [doctors, setDoctors] = useState(() => {
+        const storedRegisteredUsers = JSON.parse(localStorage.getItem('registered_users') || '[]');
+        const registeredDoctors = storedRegisteredUsers.filter(u => u.role === 'medico');
+        return [...mockDoctors, ...registeredDoctors];
+    });
 
     // --- SPECIALITIES STATE & LOGIC ---
     const [specialties, setSpecialties] = useState(() => {

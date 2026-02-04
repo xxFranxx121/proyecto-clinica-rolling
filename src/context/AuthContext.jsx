@@ -101,6 +101,27 @@ export const AuthProvider = ({ children }) => {
         return { success: true };
     };
 
+    const updateUser = (updatedUser) => {
+        // Update state
+        setAllUsers(prevUsers => prevUsers.map(u => u.email === updatedUser.email ? updatedUser : u));
+
+        // Update localStorage if it's a registered user
+        const storedRegisteredUsers = JSON.parse(localStorage.getItem('registered_users') || '[]');
+        const userIndex = storedRegisteredUsers.findIndex(u => u.email === updatedUser.email);
+
+        if (userIndex !== -1) {
+            storedRegisteredUsers[userIndex] = updatedUser;
+            localStorage.setItem('registered_users', JSON.stringify(storedRegisteredUsers));
+        }
+
+        // If it's the current logged in user, update session too
+        if (user && user.email === updatedUser.email) {
+            const { password, ...userWithoutPass } = updatedUser;
+            setUser(userWithoutPass);
+            localStorage.setItem('user', JSON.stringify(userWithoutPass));
+        }
+    };
+
     const logout = () => {
         setUser(null);
         localStorage.removeItem('user');
@@ -110,7 +131,10 @@ export const AuthProvider = ({ children }) => {
         user,
         login,
         logout,
-        register
+        login,
+        logout,
+        register,
+        updateUser
     };
 
     return (
