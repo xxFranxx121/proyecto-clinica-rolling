@@ -152,7 +152,7 @@ const Profesionales = () => {
                 <Specialty>
                   <FaStethoscope /> {doc.specialty}
                 </Specialty>
-                <Button to={`/medico?id=${doc.id}`}>Solicitar Turno</Button>
+                <Button to={`/medico/${doc.id}`}>Solicitar Turno</Button>
               </Content>
             </Card>
           ))

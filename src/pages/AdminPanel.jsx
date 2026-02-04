@@ -4,6 +4,7 @@ import { FaUserMd, FaUserInjured, FaCalendarCheck } from 'react-icons/fa';
 import AdminDoctors from '../components/admin/AdminDoctors';
 import AdminPatients from '../components/admin/AdminPatients';
 import AdminAppointments from '../components/admin/AdminAppointments';
+import AdminSpecialties from '../components/admin/AdminSpecialties';
 
 const AdminContainer = styled.div`
   padding: ${({ theme }) => theme.spacing.xlarge} 0;
@@ -64,11 +65,15 @@ const AdminPanel = () => {
                 <Tab active={activeTab === 'appointments'} onClick={() => setActiveTab('appointments')}>
                     <FaCalendarCheck size={20} /> Turnos
                 </Tab>
+                <Tab active={activeTab === 'specialties'} onClick={() => setActiveTab('specialties')}>
+                    <FaCalendarCheck size={20} /> Especialidades
+                </Tab>
             </TabsContainer>
 
             {activeTab === 'doctors' && <AdminDoctors />}
             {activeTab === 'patients' && <AdminPatients />}
             {activeTab === 'appointments' && <AdminAppointments />}
+            {activeTab === 'specialties' && <AdminSpecialties />}
 
         </AdminContainer>
     );

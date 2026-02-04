@@ -1,5 +1,5 @@
 import { createContext, useState, useContext } from 'react';
-import { mockDoctors, mockAppointments } from '../services/mockData';
+import { mockDoctors, mockAppointments, mockSpecialties } from '../services/mockData';
 
 const DataContext = createContext();
 
@@ -10,6 +10,25 @@ export const useData = () => {
 
 export const DataProvider = ({ children }) => {
     const [doctors, setDoctors] = useState(mockDoctors);
+
+    // --- SPECIALITIES STATE & LOGIC ---
+    const [specialties, setSpecialties] = useState(() => {
+        const stored = localStorage.getItem('specialties');
+        return stored ? JSON.parse(stored) : mockSpecialties;
+    });
+
+    const addSpecialty = (name) => {
+        const newSpec = { id: Date.now(), name };
+        const newSpecialties = [...specialties, newSpec];
+        setSpecialties(newSpecialties);
+        localStorage.setItem('specialties', JSON.stringify(newSpecialties));
+    };
+
+    const deleteSpecialty = (id) => {
+        const newSpecialties = specialties.filter(s => s.id !== id);
+        setSpecialties(newSpecialties);
+        localStorage.setItem('specialties', JSON.stringify(newSpecialties));
+    };
 
     const [patients, setPatients] = useState(() => {
         const storedPatients = localStorage.getItem('patients');
@@ -42,7 +61,9 @@ export const DataProvider = ({ children }) => {
 
     // --- DOCTORS CRUD ---
     const addDoctor = (doctor) => {
-        const newDoctors = [...doctors, { ...doctor, id: Date.now() }];
+        // Enforce approved: false by default for new registrations
+        const newDoc = { ...doctor, id: Date.now(), approved: doctor.approved || false };
+        const newDoctors = [...doctors, newDoc];
         setDoctors(newDoctors);
         // In a real app we'd save to DB/Local here too
     };
@@ -78,7 +99,7 @@ export const DataProvider = ({ children }) => {
     // --- APPOINTMENTS CRUD ---
     const checkAvailability = (doctorId, date, time) => {
         return !appointments.some(apt =>
-            apt.doctorId === Number(doctorId) &&
+            Number(apt.doctorId) === Number(doctorId) &&
             apt.date === date &&
             apt.time === time &&
             apt.status !== 'cancelado'
@@ -112,7 +133,8 @@ export const DataProvider = ({ children }) => {
         addPatient, updatePatient, deletePatient,
         appointments,
         addAppointment, updateAppointmentStatus, deleteAppointment,
-        checkAvailability
+        checkAvailability,
+        specialties, addSpecialty, deleteSpecialty
     };
 
     return (

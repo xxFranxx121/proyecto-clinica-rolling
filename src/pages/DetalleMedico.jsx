@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { useState } from 'react';
-import { useSearchParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useData } from '../context/DataContext';
 import { useAuth } from '../context/AuthContext';
 import { FaUserMd, FaClock, FaEnvelope, FaCalendarAlt, FaCheckCircle, FaExclamationTriangle } from 'react-icons/fa';
@@ -178,9 +178,8 @@ const ErrorMsg = styled.p`
 `;
 
 const DetalleMedico = () => {
-  const [searchParams] = useSearchParams();
+  const { id: doctorId } = useParams();
   const navigate = useNavigate();
-  const doctorId = searchParams.get('id');
 
   const { doctors, checkAvailability, addAppointment } = useData();
   const { user } = useAuth();
@@ -274,14 +273,17 @@ const DetalleMedico = () => {
             <Select
               value={formData.time}
               onChange={e => setFormData({ ...formData, time: e.target.value })}
+              disabled={!formData.date}
             >
               <option value="">Seleccione Horario</option>
-              <option value="09:00">09:00</option>
-              <option value="10:00">10:00</option>
-              <option value="11:30">11:30</option>
-              <option value="14:00">14:00</option>
-              <option value="16:00">16:00</option>
-              <option value="17:30">17:30</option>
+              {["09:00", "10:00", "11:30", "14:00", "16:00", "17:30"].map(time => {
+                const isAvailable = formData.date ? checkAvailability(doctorId, formData.date, time) : true;
+                return (
+                  <option key={time} value={time} disabled={!isAvailable}>
+                    {time} {formData.date && !isAvailable ? '(Ocupado)' : ''}
+                  </option>
+                );
+              })}
             </Select>
           </FormGroup>
 

@@ -80,7 +80,7 @@ function App() {
                   }
                 />
                 <Route
-                  path="/medico"
+                  path="/medico/:id"
                   element={
                     <ProtectedRoute requiredRole="paciente">
                       <DetalleMedico />
