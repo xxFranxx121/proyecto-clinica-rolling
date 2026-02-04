@@ -57,7 +57,31 @@ Dentro de esta carpeta se encuentra la subcarpeta admin, que agrupa componentes 
 -	Componentes reutilizables y modulares.
 -	Diseño responsive adaptable a distintos dispositivos.
 -	Interfaz clara y orientada a la experiencia del usuario.
+-	
+# Ejecucion del proyecto: 
+1. Clonar el repositorio:
+-	`bash: git clone https://github.com/usuario/nombre-repositorio.git
+2. Ingresar al directorio del proyecto:
+-	cd proyecto-rolling-clinica
+3. Instalar dependencias:
+-	npm install
+4. Ejecutar el proyecto:
+-	npm run dev
+-	La aplicación se abrirá en el navegador en http://localhost:5173.
   
+# Deploy del proyecto con GitHub
+-	El proyecto fue versionado y desplegado utilizando Git y GitHub.
+-	Se realizó subiendo la versión final del proyecto a la rama principal (main) del repositorio y luego dev permitiendo su correcta visualización y presentación.
+Control de versiones y trabajo con Git
+-	Durante el desarrollo se utilizó Git como sistema de control de versiones, lo que permitió mantener un historial de cambios y un desarrollo ordenado.
+Ramas utilizadas
+-	main: rama principal con la versión final del proyecto.
+-	dev: rama de desarrollo utilizada para realizar cambios y pruebas.
+
+# Flujo de trabajo
+-	El desarrollo se realizó sobre la rama dev. Una vez finalizadas las funcionalidades, los cambios fueron integrados a la rama main.
+Este flujo permitió un desarrollo organizado y una correcta integración con GitHub.
+
 # Participantes:
 Francisco De Cilia. 
 Nicole Politti. 
