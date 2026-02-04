@@ -6,9 +6,10 @@ const CardContainer = styled.div`
   border-left: 5px solid ${({ theme }) => theme.colors.primary};
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  padding: ${({ theme }) => theme.spacing.large};
+  padding: ${({ theme }) => theme.spacing.medium};
   margin: ${({ theme }) => theme.spacing.large} auto;
-  max-width: 800px;
+  max-width: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -81,21 +82,21 @@ const IconWrapper = styled.div`
 `;
 
 const AvisoHorario = () => {
-    return (
-        <CardContainer>
-            <ContentSection>
-                <Badge>Aviso Importante</Badge>
-                <Title>Nuevo Horario de Atención</Title>
-                <HighlightText>
-                    de 8 a 20:30 hs
-                </HighlightText>
-                <SubText>Desde el jueves 8 de junio</SubText>
-            </ContentSection>
-            <IconWrapper>
-                <FaClock />
-            </IconWrapper>
-        </CardContainer>
-    );
+  return (
+    <CardContainer>
+      <ContentSection>
+        <Badge>Aviso Importante</Badge>
+        <Title>Nuevo horario de atención</Title>
+        <HighlightText>
+          de 8:00 a 20:30 hs
+        </HighlightText>
+        <SubText>Desde el jueves 4 de enero</SubText>
+      </ContentSection>
+      <IconWrapper>
+        <FaClock />
+      </IconWrapper>
+    </CardContainer>
+  );
 };
 
 export default AvisoHorario;

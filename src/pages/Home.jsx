@@ -25,11 +25,8 @@ const HeroWrapper = styled.section`
   }
 `;
 
-const AvisoWrapper = styled.div`
+const FullWidthSection = styled.section`
   width: 100%;
-  max-width: 100%;
-  margin: ${({ theme }) => theme.spacing.large} 0;
-  padding: 0 ${({ theme }) => theme.spacing.xlarge};
 `;
 
 const HeroSection = styled.section`
@@ -193,11 +190,9 @@ const Home = () => {
         </HeroSection>
       </HeroWrapper>
 
-
-      <AvisoWrapper>
+      <FullWidthSection>
         <AvisoHorario />
-      </AvisoWrapper>
-
+      </FullWidthSection>
 
       <CardsGrid>
         <Card>
