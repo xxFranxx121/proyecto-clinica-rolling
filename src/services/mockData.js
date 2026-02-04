@@ -1,11 +1,17 @@
+import doctorHouseImg from '../assets/doctor-house.png';
+import doctorGreyImg from '../assets/doctor-grey.png';
+import doctorMurphyImg from '../assets/doctor-murphy.png';
+import doctorCuddyImg from '../assets/doctor-cuddy.png';
+import doctorShepherdImg from '../assets/doctor-shepherd.png';
+
 export const mockDoctors = [
-    { id: 1, name: 'Dr. Gregory House', specialty: 'Clínica Medica', email: 'dr.house@clinica.com', image: 'https://i.pravatar.cc/150?u=house', approved: true },
-    { id: 2, name: 'Dra. Meredith Grey', specialty: 'Cirugía General', email: 'grey@clinica.com', image: 'https://i.pravatar.cc/150?u=grey', approved: true },
-    { id: 3, name: 'Dr. Shaun Murphy', specialty: 'Pediatría / Neonatología', email: 'murphy@clinica.com', image: 'https://i.pravatar.cc/150?u=shaun', approved: true },
-    { id: 4, name: 'Dra. Lisa Cuddy', specialty: 'Endocrinología', email: 'cuddy@clinica.com', image: 'https://i.pravatar.cc/150?u=cuddy', approved: true },
-    { id: 5, name: 'Dr. Derek Shepherd', specialty: 'Neurología', email: 'shepherd@clinica.com', image: 'https://i.pravatar.cc/150?u=derek', approved: true },
-    { id: 6, name: 'Dra. Addison Montgomery', specialty: 'Ginecología', email: 'montgomery@clinica.com', image: 'https://i.pravatar.cc/150?u=addison', approved: true },
-    { id: 7, name: 'Dra. Cristina Yang', specialty: 'Cardiología', email: 'yang@clinica.com', image: 'https://i.pravatar.cc/150?u=yang', approved: true },
+    { id: 1, name: 'Dr. Gregory House', specialty: 'Clínica Medica', email: 'dr.house@clinica.com', image: doctorHouseImg, approved: true },
+    { id: 2, name: 'Dra. Meredith Grey', specialty: 'Cirugía General', email: 'grey@clinica.com', image: doctorGreyImg, approved: true },
+    { id: 3, name: 'Dr. Shaun Murphy', specialty: 'Pediatría / Neonatología', email: 'murphy@clinica.com', image: doctorMurphyImg, approved: true },
+    { id: 4, name: 'Dra. Lisa Cuddy', specialty: 'Endocrinología', email: 'cuddy@clinica.com', image: doctorCuddyImg, approved: true },
+    { id: 5, name: 'Dr. Derek Shepherd', specialty: 'Neurología', email: 'shepherd@clinica.com', image: doctorShepherdImg, approved: true },
+    { id: 6, name: 'Dra. Addison Montgomery', specialty: 'Ginecología', email: 'montgomery@clinica.com', image: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&h=400&fit=crop&crop=faces', approved: true },
+    { id: 7, name: 'Dra. Cristina Yang', specialty: 'Cardiología', email: 'yang@clinica.com', image: 'https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=400&h=400&fit=crop&crop=faces', approved: true },
 ];
 
 export const mockAppointments = [

@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import AvisoHorario from '../components/AvisoHorario';
-import { FaStethoscope, FaCalendarCheck, FaNotesMedical } from 'react-icons/fa';
-import heroImg from '../assets/c1.jpg';
+import { FaStethoscope, FaCalendarCheck, FaNotesMedical, FaInfoCircle } from 'react-icons/fa';
+import heroImg from '../assets/clinic-hero.png';
 
 const HeroWrapper = styled.section`
   height: 60vh;
@@ -225,6 +225,22 @@ const Home = () => {
           </CardDescription>
         </Card>
       </CardsGrid>
+
+      {/* Sección: Conocé más sobre nosotros */}
+      <CTASection style={{ backgroundColor: '#f8f9fa', color: '#333' }}>
+        <FaInfoCircle style={{ fontSize: '3rem', color: '#2e7d32', marginBottom: '1rem' }} />
+        <CTATitle style={{ color: '#2e7d32' }}>Conocé Clínica Azahares</CTATitle>
+        <CTAText style={{ color: '#666' }}>
+          Descubrí nuestra historia, valores y el compromiso que nos impulsa a brindarte
+          la mejor atención médica. Conocé más sobre nuestro equipo y misión.
+        </CTAText>
+        <CTAButton
+          onClick={() => navigate('/nosotros')}
+          style={{ backgroundColor: '#2e7d32', color: 'white' }}
+        >
+          Acerca de Nosotros
+        </CTAButton>
+      </CTASection>
 
       {/* Nueva Sección CTA: Sacar Turno */}
       <CTASection>
